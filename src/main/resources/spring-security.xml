@@ -5,9 +5,9 @@
 	xmlns:c="http://www.springframework.org/schema/c"
 	xmlns="http://www.springframework.org/schema/security"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
-		http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+		http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
 		http://www.springframework.org/schema/security
-		http://www.springframework.org/schema/security/spring-security-4.0.xsd">
+		http://www.springframework.org/schema/security/spring-security-4.1.xsd">
 
 	<!--
 	Applies to root appContext beans only, for MVC Controllers is this declaration repeated in MVC config.
@@ -45,9 +45,9 @@
 		<intercept-url pattern="/*/file/save" access="isFullyAuthenticated()"/>
 	</http>
 
-	<bean:bean id="unauthorizedEntryPoint" class="com.one.main.restsec.UnauthorizedEntryPoint"/>
+	<bean:bean id="unauthorizedEntryPoint" class="com.main.restsec.UnauthorizedEntryPoint"/>
 
-	<bean:bean id="userDetailService" class="com.one.main.secimpl.MyUserDetailsService"/>
+	<bean:bean id="userDetailService" class="com.main.secimpl.MyUserDetailsService"/>
 
 	<authentication-manager id="restAuthenticationManager">
 		<authentication-provider user-service-ref="userDetailService">
@@ -58,11 +58,11 @@
 		</authentication-provider>
 	</authentication-manager>
 
-	<bean:bean id="tokenManager" class="com.one.main.secimpl.TokenManagerSingle"/>
+	<bean:bean id="tokenManager" class="com.main.secimpl.TokenManagerSingle"/>
 
-	<bean:bean id="authenticationService" class="com.one.main.secimpl.AuthenticationServiceDefault"
+	<bean:bean id="authenticationService" class="com.main.secimpl.AuthenticationServiceDefault"
 		c:authenticationManager-ref="restAuthenticationManager" c:tokenManager-ref="tokenManager"/>
 
-	<bean:bean id="restAuthenticationFilter" class="com.one.main.restsec.TokenAuthenticationFilter"
+	<bean:bean id="restAuthenticationFilter" class="com.main.restsec.TokenAuthenticationFilter"
 		c:authenticationService-ref="authenticationService" c:logoutLink="/logout"/>
 </bean:beans>

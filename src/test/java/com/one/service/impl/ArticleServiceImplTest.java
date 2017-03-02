@@ -19,9 +19,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.one.app.App;
-import com.one.service.ArticleService;
-import com.one.vo.ArticleVo;
+import com.app.App;
+import com.service.iface.ArticleService;
+import com.vo.ArticleVo;
 
 /**
  * @author Jay

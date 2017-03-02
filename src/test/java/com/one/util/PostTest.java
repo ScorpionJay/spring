@@ -2,6 +2,8 @@ package com.one.util;
 
 import org.junit.Test;
 
+import com.util.Post;
+
 /**
  * @author jay time: 2016年7月28日
  */

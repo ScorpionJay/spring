@@ -10,9 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.one.app.App;
-import com.one.service.UserService;
-import com.one.vo.UserVo;
+import com.app.App;
+import com.service.iface.UserService;
+import com.vo.UserVo;
 
 /**
 * @author	jay

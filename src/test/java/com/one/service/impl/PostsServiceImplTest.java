@@ -14,11 +14,11 @@ import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.app.App;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.one.app.App;
-import com.one.service.PostService;
-import com.one.vo.PostVo;
+import com.service.iface.PostService;
+import com.vo.PostVo;
 
 /**
 * @author	jay
