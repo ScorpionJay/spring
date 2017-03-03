@@ -20,7 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.main.restsec.AuthenticationService;
+import com.security.restsec.AuthenticationService;
 import com.service.iface.FileService;
 import com.service.iface.PostService;
 import com.service.iface.UserService;

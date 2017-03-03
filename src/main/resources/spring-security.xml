@@ -45,9 +45,9 @@
 		<intercept-url pattern="/*/file/save" access="isFullyAuthenticated()"/>
 	</http>
 
-	<bean:bean id="unauthorizedEntryPoint" class="com.main.restsec.UnauthorizedEntryPoint"/>
+	<bean:bean id="unauthorizedEntryPoint" class="com.security.restsec.UnauthorizedEntryPoint"/>
 
-	<bean:bean id="userDetailService" class="com.main.secimpl.MyUserDetailsService"/>
+	<bean:bean id="userDetailService" class="com.security.secimpl.MyUserDetailsService"/>
 
 	<authentication-manager id="restAuthenticationManager">
 		<authentication-provider user-service-ref="userDetailService">
@@ -58,11 +58,11 @@
 		</authentication-provider>
 	</authentication-manager>
 
-	<bean:bean id="tokenManager" class="com.main.secimpl.TokenManagerSingle"/>
+	<bean:bean id="tokenManager" class="com.security.secimpl.TokenManagerSingle"/>
 
-	<bean:bean id="authenticationService" class="com.main.secimpl.AuthenticationServiceDefault"
+	<bean:bean id="authenticationService" class="com.security.secimpl.AuthenticationServiceDefault"
 		c:authenticationManager-ref="restAuthenticationManager" c:tokenManager-ref="tokenManager"/>
 
-	<bean:bean id="restAuthenticationFilter" class="com.main.restsec.TokenAuthenticationFilter"
+	<bean:bean id="restAuthenticationFilter" class="com.security.restsec.TokenAuthenticationFilter"
 		c:authenticationService-ref="authenticationService" c:logoutLink="/logout"/>
 </bean:beans>

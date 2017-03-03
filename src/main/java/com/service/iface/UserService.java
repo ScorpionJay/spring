@@ -2,7 +2,6 @@ package com.service.iface;
 
 import java.util.Set;
 
-import com.main.domain.User;
 import com.vo.UserVo;
 
 /**
@@ -23,7 +22,7 @@ public interface UserService {
 	 * @param userName
 	 * @return
 	 */
-	User getByUsername(String username);
+	com.security.domain.User getByUsername(String username);
 	
 	/**
 	 * get user by id

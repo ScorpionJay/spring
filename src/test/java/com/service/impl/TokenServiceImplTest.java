@@ -23,7 +23,7 @@ public class TokenServiceImplTest {
 	@Test
 	public void testSave() {
 		Token token = new Token();
-		token.setToken("testid");
+		//token.setToken("testid");
 		token.setExpiration(50l);
 		tokenService.save(token);
 	}
@@ -31,7 +31,7 @@ public class TokenServiceImplTest {
 	@Test
 	public void testGet() {
 //		Token token =  tokenService.get("5b765414-09d8-421a-ae00-9058eaac443a");
-		Token token =  tokenService.get("testid");
+		Token token =  tokenService.get("PUgayW46ZPig2XU7ehNn2l9r/txROmRhheOQdkM73zA=");
 		System.out.println(token);
 	}
 

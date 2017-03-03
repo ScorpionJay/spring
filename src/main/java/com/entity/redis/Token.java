@@ -5,50 +5,59 @@ import org.springframework.data.redis.core.RedisHash;
 import org.springframework.data.redis.core.TimeToLive;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import com.security.secimpl.UserContext;
+
 @RedisHash("token")
 public class Token {
 
 	@Id
-	String token;
+	String id;
 
-	private UserDetails userDetails;
+	String  username;
 
 	@TimeToLive
 	private Long expiration;
-
-	public Long getExpiration() {
-		return expiration;
-	}
 
 	public Token() {
 		super();
 	}
 
-	public Token(String token, UserDetails userDetails, Long expiration) {
+	public Token(String id, String username, Long expiration) {
 		super();
-		this.token = token;
-		this.userDetails = userDetails;
+		this.id = id;
+		this.username = username;
 		this.expiration = expiration;
 	}
 
-	public String getToken() {
-		return token;
+	public String getId() {
+		return id;
 	}
 
-	public void setToken(String token) {
-		this.token = token;
+	public void setId(String id) {
+		this.id = id;
 	}
 
-	public UserDetails getUserDetails() {
-		return userDetails;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setUserDetails(UserDetails userDetails) {
-		this.userDetails = userDetails;
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public Long getExpiration() {
+		return expiration;
 	}
 
 	public void setExpiration(Long expiration) {
 		this.expiration = expiration;
 	}
+
+	@Override
+	public String toString() {
+		return "Token [id=" + id + ", username=" + username + ", expiration=" + expiration + "]";
+	}
+
+	
 
 }

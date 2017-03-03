@@ -18,8 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.main.restsec.AuthenticationService;
-import com.main.restsec.TokenManager;
+import com.security.restsec.AuthenticationService;
 import com.service.iface.FileService;
 import com.service.iface.UserService;
 import com.util.ExceptionUtil;

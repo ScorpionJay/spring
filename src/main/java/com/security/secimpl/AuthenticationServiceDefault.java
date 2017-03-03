@@ -1,4 +1,4 @@
-package com.main.secimpl;
+package com.security.secimpl;
 
 import javax.annotation.PostConstruct;
 
@@ -12,10 +12,11 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.preauth.PreAuthenticatedAuthenticationToken;
 
-import com.exception.MyException;
-import com.main.restsec.AuthenticationService;
-import com.main.restsec.TokenInfo;
-import com.main.restsec.TokenManager;
+import com.security.domain.User;
+import com.security.restsec.AuthenticationService;
+import com.security.restsec.TokenInfo;
+import com.security.restsec.TokenManager;
+import com.service.iface.UserService;
 
 /**
  * 生成token的token放入redis TODO
@@ -27,6 +28,9 @@ public class AuthenticationServiceDefault implements AuthenticationService {
 	@Autowired
 	private ApplicationContext applicationContext;
 
+	@Autowired
+	UserService userService;
+	
 	private final AuthenticationManager authenticationManager;
 	private final TokenManager tokenManager;
 
@@ -69,8 +73,18 @@ public class AuthenticationServiceDefault implements AuthenticationService {
 	public boolean checkToken(String token) {
 		System.out.println(" *** AuthenticationServiceImpl.checkToken");
 		
-		// 检验token 这里改成从redis获取判断？？？todo
-		UserDetails userDetails = tokenManager.getUserDetails(token);
+		// 检验token 这里改成从redis获取判断？？？todo 这里问题较大 需要从新看
+		String username = tokenManager.getUserDetails(token);
+		User user = userService.getByUsername(username);
+		Authentication authentication = new UsernamePasswordAuthenticationToken(user.getLogin(), user.getPassword());
+		
+			authentication = authenticationManager.authenticate(authentication);
+			// Here principal=UserDetails (UserContext in our case), credentials=null (security reasons)
+			SecurityContextHolder.getContext().setAuthentication(authentication);
+			UserDetails userDetails = null;
+			if (authentication.getPrincipal() != null) {
+				 userDetails = (UserDetails) authentication.getPrincipal();
+			}
 		if (userDetails == null) {
 			return false;
 		}
@@ -84,6 +98,7 @@ public class AuthenticationServiceDefault implements AuthenticationService {
 
 	@Override
 	public void logout(String token) {
+		// 删除redis中的token
 		UserDetails logoutUser = tokenManager.removeToken(token);
 		System.out.println(" *** AuthenticationServiceImpl.logout: " + logoutUser);
 		SecurityContextHolder.clearContext();

@@ -8,7 +8,6 @@ import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
-import org.springframework.cache.annotation.Caching;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
@@ -35,11 +34,11 @@ public class UserServiceImpl implements UserService {
 	
 	
 	@Override
-	public com.main.domain.User getByUsername(String username) {
+	public com.security.domain.User getByUsername(String username) {
 		User user = mongoTemplate.findOne(new Query(where("username").is(username)), User.class);
-		com.main.domain.User outUser = null; 
+		com.security.domain.User outUser = null; 
 		if(user != null){
-			outUser = new com.main.domain.User(user.getUsername(), user.getUsername(), user.getPassword(), user.getAuthorities());
+			outUser = new com.security.domain.User(user.getUsername(), user.getUsername(), user.getPassword(), user.getAuthorities());
 		}
 
 		return outUser;
@@ -67,7 +66,7 @@ public class UserServiceImpl implements UserService {
 	public void addUser(UserVo userVo) {
 
 		// check userName exist
-		com.main.domain.User vo  = getByUsername(userVo.getUserName());
+		com.security.domain.User vo  = getByUsername(userVo.getUserName());
 		if( vo != null ){
 			exceptionUtil.getException("account.exist");
 		}

@@ -16,9 +16,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.main.restsec.AuthenticationService;
-import com.main.restsec.TokenInfo;
-import com.main.restsec.TokenManager;
+import com.security.restsec.AuthenticationService;
+import com.security.restsec.TokenInfo;
+import com.security.restsec.TokenManager;
 
 /**
  * Controller with REST API. Access to login is generally permitted,
@@ -79,12 +79,12 @@ public class MainRestController {
 		return "Any authorized user should have access.";
 	}
 
-	@RequestMapping("/secure/mytokens")
-	public Collection<TokenInfo> myTokens() {
-		System.out.println(" *** MainRestController.myTokens");
-		UserDetails currentUser = authenticationService.currentUser();
-		return tokenManager.getUserTokens(currentUser);
-	}
+//	@RequestMapping("/secure/mytokens")
+//	public Collection<TokenInfo> myTokens() {
+//		System.out.println(" *** MainRestController.myTokens");
+//		UserDetails currentUser = authenticationService.currentUser();
+//		return tokenManager.getUserTokens(currentUser);
+//	}
 
 	// Spring annotation virtually equivalent with @RolesAllowed - except for...
 	// WARNING: @Secured by default works only with roles starting with ROLE_ prefix, see this for more:
@@ -98,10 +98,10 @@ public class MainRestController {
 	}
 
 	// Spring annotation that speaks SpEL!
-	@PreAuthorize("hasRole('ADMIN')")
-	@RequestMapping("/secure/allusers")
-	public Map<String, UserDetails> allUsers() {
-		System.out.println(" *** MainRestController.allUsers");
-		return tokenManager.getValidUsers();
-	}
+//	@PreAuthorize("hasRole('ADMIN')")
+//	@RequestMapping("/secure/allusers")
+//	public Map<String, UserDetails> allUsers() {
+//		System.out.println(" *** MainRestController.allUsers");
+//		return tokenManager.getValidUsers();
+//	}
 }

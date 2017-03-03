@@ -16,7 +16,6 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
 
-import com.main.domain.User;
 import com.mongo.entity.Post;
 import com.service.iface.PostService;
 import com.service.iface.UserService;
