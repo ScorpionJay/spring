@@ -2,23 +2,28 @@
  * Copyright the original author or authors.
  */
 
-package com.vo;
+package com.entity.mongo;
 
 import java.io.Serializable;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
 /**
- * 投资产品VO
+ * 投资产品entity
  * 
  * @author jay
  * @since 2017/1/23
  */
-public class InverstVo implements Serializable {
+@Document(collection = "Inverst")
+public class Inverst implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * Id
 	 */
+	@Id
 	private String id;
 
 	/**
@@ -41,19 +46,11 @@ public class InverstVo implements Serializable {
 	 */
 	private String typeTerm;
 
-	public InverstVo() {
+	public Inverst() {
 		super();
 	}
 
-	public InverstVo(String type, String rate, String description, String typeTerm) {
-		super();
-		this.type = type;
-		this.rate = rate;
-		this.description = description;
-		this.typeTerm = typeTerm;
-	}
-
-	public InverstVo(String id, String type, String rate, String description, String typeTerm) {
+	public Inverst(String id, String type, String rate, String description, String typeTerm) {
 		super();
 		this.id = id;
 		this.type = type;
@@ -104,7 +101,7 @@ public class InverstVo implements Serializable {
 
 	@Override
 	public String toString() {
-		return "InverstVo [id=" + id + ", type=" + type + ", rate=" + rate + ", description=" + description
+		return "Inverst [id=" + id + ", type=" + type + ", rate=" + rate + ", description=" + description
 				+ ", typeTerm=" + typeTerm + "]";
 	}
 

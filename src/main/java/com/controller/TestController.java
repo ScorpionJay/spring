@@ -1,22 +1,18 @@
 package com.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
+import org.springframework.data.redis.core.ListOperations;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.main.restsec.AuthenticationService;
 import com.service.iface.UserService;
-import com.vo.InverstVo;
 import com.vo.ResultVo;
 import com.vo.UserVo;
 
@@ -26,15 +22,22 @@ public class TestController {
 /*	@Autowired
 	private AuthenticationService authenticationService;*/
 	
-	 @Autowired  
-     private HttpServletRequest request;  
+	 @Autowired(required=false)  
+     private HttpServletRequest httpServletRequest; 
 	
 	@Autowired
 	private UserService userService;
 	
+	@Resource(name="redisTemplate")
+	private ListOperations<String, String> listOps;
+//	 
+//	@Autowired
+//	private StringRedisTemplate template;
+
 	
 	@RequestMapping(value="test123")
     public String test() {
+		 listOps.leftPush("123", "test");
         return "test";
     }
 
@@ -66,7 +69,7 @@ public class TestController {
 		return resultVo;
 	}
 	
-    @RequestMapping("/inverst")
+/*    @RequestMapping("/inverst")
     @ResponseBody
     public Object test22( @RequestHeader HttpHeaders headers) {
     	// get token from header
@@ -81,6 +84,8 @@ public class TestController {
         }
         
         return list;
-    }
+    }*/
+	
+	
 	
 }

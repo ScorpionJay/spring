@@ -53,7 +53,7 @@ public class AuthenticationServiceDefault implements AuthenticationService {
 
 			if (authentication.getPrincipal() != null) {
 				UserDetails userContext = (UserDetails) authentication.getPrincipal();
-				TokenInfo newToken = tokenManager.createNewToken(userContext);
+				TokenInfo newToken = tokenManager.createNewToken(userContext);// 这里下手处理token？？？todo
 				if (newToken == null) {
 					return null;
 				}
@@ -68,7 +68,8 @@ public class AuthenticationServiceDefault implements AuthenticationService {
 	@Override
 	public boolean checkToken(String token) {
 		System.out.println(" *** AuthenticationServiceImpl.checkToken");
-
+		
+		// 检验token 这里改成从redis获取判断？？？todo
 		UserDetails userDetails = tokenManager.getUserDetails(token);
 		if (userDetails == null) {
 			return false;
