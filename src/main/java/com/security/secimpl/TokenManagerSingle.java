@@ -91,6 +91,9 @@ public class TokenManagerSingle implements TokenManager {
 	@Override
 	public String getUserDetails(String token) {
 		Token t =  tokenService.get(token);
+		if( t == null ){
+			return null;
+		}
 		return t.getUsername();
 	}
 

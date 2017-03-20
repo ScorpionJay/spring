@@ -75,6 +75,9 @@ public class AuthenticationServiceDefault implements AuthenticationService {
 		
 		// 检验token 这里改成从redis获取判断？？？todo 这里问题较大 需要从新看
 		String username = tokenManager.getUserDetails(token);
+		if (username == null) {
+			return false;
+		}
 		User user = userService.getByUsername(username);
 		Authentication authentication = new UsernamePasswordAuthenticationToken(user.getLogin(), user.getPassword());
 		

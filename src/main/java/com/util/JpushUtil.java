@@ -47,9 +47,9 @@ public class JpushUtil {
 		return PushPayload.alertAll("2222222");
 	}
 	
-	public static void main(String[] args) {
-		JpushUtil jpushUtil = new JpushUtil();
-		jpushUtil.push();
-	}
+	//public static void main(String[] args) {
+	//	JpushUtil jpushUtil = new JpushUtil();
+	//	jpushUtil.push();
+	//}
 	
 }

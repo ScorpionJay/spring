@@ -13,5 +13,4 @@ public class Constant{
 	 public static final Integer post_type_video = 3;
 
 	
-	
 }
